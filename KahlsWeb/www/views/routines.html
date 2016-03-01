@@ -1,0 +1,16 @@
+<div>
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Fråga</th>
+                <th>Kategori</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in vm.routines">
+                <td class="mdl-data-table__cell--non-numeric">{{item.title}}</td>
+                <td>{{item.category}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
