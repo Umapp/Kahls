@@ -18,7 +18,7 @@ gulp.task('browser-sync', function () {
 });
 
 gulp.task('sass', function () {
-    gulp.src('app/scss/styles.scss')
+    gulp.src('app/**/styles.scss')
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(gulp.dest('www/'))
         .pipe(browserSync.stream());
@@ -38,7 +38,7 @@ gulp.task('scripts', function () {
 
 gulp.task('watch', ['browser-sync'], function () {
     gulp.watch('app/**/*.ts', ['scripts']);
-    //gulp.watch('app/**/*.scss', ['sass']);
+    gulp.watch('app/**/*.scss', ['sass']);
     //gulp.watch('app/**/*.js', ['scripts']);
     //gulp.watch("**/*.html").on("change", browserSync.reload);
 });

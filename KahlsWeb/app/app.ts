@@ -1,2 +1,2 @@
-angular.module('Kahls', ['ngRoute']);
+angular.module('Kahls', ['ui.router']);
 

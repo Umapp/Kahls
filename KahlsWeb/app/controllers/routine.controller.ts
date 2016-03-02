@@ -1,13 +1,23 @@
 module Kahls.Controllers {
     export class RoutineController {
         routines = [];
-        static $inject = ['$q', 'RoutineService'];
-        constructor(private $q, RoutineService: IRoutineService) {
+        state = {};
+
+        static $inject = ['RoutineService', '$state'];
+
+        constructor(private RoutineService: IRoutineService, private $state) {
+            this.state = $state;
             RoutineService.getRoutines().then((data) => {
-                console.log(data);
                 this.routines = data;
             })
         };
+
+
+        updateRoutines = () => {
+            this.RoutineService.getRoutines().then((data) => {
+                this.routines = data;
+            })
+        }
     }
 }
 

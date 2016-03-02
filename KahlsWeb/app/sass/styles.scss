@@ -1,0 +1,47 @@
+@import "_animations.scss";
+
+.sidebar{
+    left:0;
+    bottom:0;
+    top:0;
+    width:100px;
+    height:100%;
+    position:fixed;
+    background-color:#303c4b;
+    
+    ul{
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        color: #fff;
+        
+        i{
+            display: block;
+            font-size: 28px;
+            margin-bottom: 5px;
+            margin-top: 4px;
+        }
+        
+        li{
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        
+        a{
+            display: block;
+            height: 70px;
+            width: 90px;
+            padding: 10px 0;
+            margin: 0;
+            text-decoration: none;
+            text-align: center;
+            color:#8e9caf;
+            font-size: 15px;
+        }
+    }
+}
+
+main{
+    margin-left:100px;
+}

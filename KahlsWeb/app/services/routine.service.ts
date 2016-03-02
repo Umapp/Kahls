@@ -1,5 +1,8 @@
 interface IRoutineService {
     getRoutines(): any;
+    updateRoutine(routine: Routine)
+    addRoutine(routine: Routine)
+    deleteRoutine(routine: Routine)
 }
 module Kahls.Services {
     export class RoutineService {
@@ -10,11 +13,28 @@ module Kahls.Services {
         };
 
         getRoutines = () => {
-            var def = this.$q.defer();
-            this.$http.get('api/routines').then((res) => {
-                def.resolve(res.data);
+            return this.$http.get('api/routines').then((res) => {
+                return res.data
             })
-            return def.promise;
+        };
+
+        updateRoutine = (routine: Routine) => {
+            return this.$http.put('api/routine/' + routine._id, routine).then((res) => {
+                return res.data;
+            })
+        };
+
+        addRoutine = (routine: Routine) => {
+            return this.$http.post('api/routine', routine).then((res) => {
+                return res;
+            })
+
+        };
+
+        deleteRoutine = (id: string) => {
+            return this.$http.delete('api/routine/' + id).then((res) => {
+                return res;
+            })
         };
     }
 }
