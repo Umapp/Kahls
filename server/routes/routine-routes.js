@@ -28,12 +28,12 @@ module.exports = (function () {
                     task.save(function (err) {
                         if (err)
                             console.log(err)
-                    res.json(task[0])
+                    res.json(task[0].todos)
                     });
                 })
             }
             else{
-                res.json(task[0]);
+                res.json(task[0].todos);
             }
 
         })
