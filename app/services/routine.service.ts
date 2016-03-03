@@ -12,13 +12,13 @@ module Kahls.Services {
             { title: 'Morgon' },
             { title: 'Stängning' },
             { title: 'Varje dag' },
-            { title: 'Måndag' },
-            { title: 'Tisdag' },
-            { title: 'Onsdag' },
-            { title: 'Torsdag' },
-            { title: 'Fredag' },
-            { title: 'Lördag' },
-            { title: 'Söndag' }
+            { title: 'Måndag', lower: 'måndag' },
+            { title: 'Tisdag', lower: 'tisdag' },
+            { title: 'Onsdag', lower: 'onsdag' },
+            { title: 'Torsdag', lower: 'torsdag' },
+            { title: 'Fredag', lower: 'fredag' },
+            { title: 'Lördag', lower: 'lördag' },
+            { title: 'Söndag', lower: 'söndag' }
         ];
 
         static $inject = ['$http', '$q'];
@@ -50,7 +50,6 @@ module Kahls.Services {
                 return res;
             })
         };
-
     }
 }
 
