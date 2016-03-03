@@ -28,16 +28,16 @@ module.exports = (function () {
                     task.save(function (err) {
                         if (err)
                             console.log(err)
-                    res.json(task)
+                    res.json(task[0].todos)
                     });
                 })
             }
             else{
-                res.json(task);
+                res.json(task[0].todos);
             }
 
         })
-    })  
+    })
 
     app.post('/task/today', function (req, res) {
         var today = moment().format('YYYY-MM-DD');
@@ -55,12 +55,12 @@ module.exports = (function () {
                     task.save(function (err) {
                         if (err)
                             console.log(err)
-                    res.json(task)
+                    res.json(task[0].todos)
                     });
                 })
             }
             else{
-                res.json(task);
+                res.json(task[0].todos);
             }
         }); 
     });
