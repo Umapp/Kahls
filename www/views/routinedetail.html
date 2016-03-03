@@ -1,22 +1,26 @@
-<div class="page-header">
-    <h1>Ändra Rutin</h1>
-</div>
-<form ng-submit="detail.save()">
-    <div class="form-group">
-        <label for="">Beskrivning</label>
-        <input type="text" class="form-control" ng-model="routine.title">
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Ändra rutin</h3>
     </div>
-    <div class="form-group">
-        <label for="">Kategori</label>
-        <input type="text" class="form-control" ng-model="routine.category">
-    </div>
-    <div class="form-group">
-        <label for="">När</label>
-        <select ng-model="routine.occurence" class="form-control">
-            <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
-        </select>
-    </div>
+    <div class="panel-body">
+        <form ng-submit="detail.save()">
+            <div class="form-group">
+                <label for="">Beskrivning</label>
+                <input type="text" class="form-control" ng-model="routine.title">
+            </div>
+            <div class="form-group">
+                <label for="">Kategori</label>
+                <input type="text" class="form-control" ng-model="routine.category">
+            </div>
+            <div class="form-group">
+                <label for="">När</label>
+                <select ng-model="routine.occurence" class="form-control">
+                    <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
+                </select>
+            </div>
 
-    <input type="submit" value="Spara" class="btn btn-success">
-    <input type="button" value="Ta bort" class="btn btn-danger" ng-click="detail.delete()">
-</form>
+            <input type="submit" value="Spara" class="btn btn-success">
+            <input type="button" value="Ta bort" class="btn btn-danger" ng-click="detail.delete()">
+        </form>
+    </div>
+</div>

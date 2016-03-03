@@ -1,22 +1,26 @@
-<div class="page-header">
-    <h1>Ny Rutin</h1>
-</div>
-<form ng-submit="newRoutine.save()">
-    <div class="form-group">
-        <label for="">Beskrivning</label>
-        <input type="text" class="form-control" ng-model="routine.title">
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">Ny Rutin</h3>
     </div>
-    <div class="form-group">
-        <label for="">Kategori</label>
-        
-        <input type="text" class="form-control" ng-model="routine.category">
-    </div>
-    <div class="form-group">
-        <label for="">När</label>
-        <select ng-model="routine.occurence" class="form-control">
-            <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
-        </select>
-    </div>
+    <div class="panel-body">
+        <form ng-submit="newRoutine.save()">
+            <div class="form-group">
+                <label for="">Beskrivning</label>
+                <input type="text" class="form-control" ng-model="routine.title">
+            </div>
+            <div class="form-group">
+                <label for="">Kategori</label>
 
-    <input type="submit" value="Spara" class="btn btn-success">
-</form>
+                <input type="text" class="form-control" ng-model="routine.category">
+            </div>
+            <div class="form-group">
+                <label for="">När</label>
+                <select ng-model="routine.occurence" class="form-control">
+                    <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Spara" class="btn btn-success">
+        </form>
+    </div>
+</div>

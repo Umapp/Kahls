@@ -1,34 +1,41 @@
 <div class="row">
 
     <div class="col-xs-12" ng-class="{'col-xs-6': vm.$state.current.url !== '/routines'}">
-        <div class="page-header">
-            <h1>Rutiner</h1>
-        </div>
-        <div class="form-inline">
-            <input type="text" class="form-control" placeholder="Sök" ng-model="vm.searchfilter">
-            <select ng-model="vm.searchfiltercategory" class="form-control">
-                <option value="">Alla</option>
-                <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
-            </select>
-        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Rutiner</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-inline">
+                    <input type="text" class="form-control" placeholder="Sök" ng-model="vm.searchfilter">
+                    <select ng-model="vm.searchfiltercategory" class="form-control">
+                        <option value="">Alla</option>
+                        <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
+                    </select>
+                </div>
 
 
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Beskrivning</th>
-                    <th>Kategori</th>
-                    <th>När</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="item in vm.routines | filter:vm.searchfiltercategory | filter:vm.searchfilter">
-                    <td ui-sref=".detail({routineID: item._id})">{{$index+1}}. {{item.title}}</td>
-                    <td>{{item.category}}</td>
-                    <td>{{item.occurence}}</td>
-                </tr>
-            </tbody>
-        </table>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Beskrivning</th>
+                            <th>Kategori</th>
+                            <th>När</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in vm.routines | filter:vm.searchfiltercategory | filter:vm.searchfilter">
+                            <td ui-sref=".detail({routineID: item._id})">{{$index+1}}. {{item.title}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.occurence}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="button" ui-sref=".new" value="Ny Rutin" class="btn btn-primary">
+            </div>
+
+
+        </div>
     </div>
 
     <div class="col-xs-6">
@@ -36,5 +43,3 @@
         <div ui-view></div>
     </div>
 </div>
-
-<input type="button" ui-sref=".new" value="Ny Rutin" class="btn btn-primary">
