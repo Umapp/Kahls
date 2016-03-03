@@ -3,16 +3,19 @@
 </div>
 <form ng-submit="newRoutine.save()">
     <div class="form-group">
-        <label for="">Fråga</label>
+        <label for="">Beskrivning</label>
         <input type="text" class="form-control" ng-model="routine.title">
     </div>
     <div class="form-group">
         <label for="">Kategori</label>
+        
         <input type="text" class="form-control" ng-model="routine.category">
     </div>
     <div class="form-group">
         <label for="">När</label>
-        <input type="text" class="form-control" ng-model="routine.occurence">
+        <select ng-model="routine.occurence" class="form-control">
+            <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
+        </select>
     </div>
 
     <input type="submit" value="Spara" class="btn btn-success">

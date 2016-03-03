@@ -3,9 +3,23 @@ interface IRoutineService {
     updateRoutine(routine: Routine)
     addRoutine(routine: Routine)
     deleteRoutine(routine: Routine)
+    occurences: any;
 }
 module Kahls.Services {
     export class RoutineService {
+
+        occurences = [
+            { title: 'Morgon' },
+            { title: 'Stängning' },
+            { title: 'Varje dag' },
+            { title: 'Måndag' },
+            { title: 'Tisdag' },
+            { title: 'Onsdag' },
+            { title: 'Torsdag' },
+            { title: 'Fredag' },
+            { title: 'Lördag' },
+            { title: 'Söndag' }
+        ];
 
         static $inject = ['$http', '$q'];
         constructor(private $http, private $q) {
@@ -36,6 +50,7 @@ module Kahls.Services {
                 return res;
             })
         };
+
     }
 }
 

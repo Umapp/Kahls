@@ -66,6 +66,7 @@ var Kahls;
                 this.RoutineService = RoutineService;
                 this.$state = $state;
                 this.routines = [];
+                this.occurences = [];
                 this.state = {};
                 this.updateRoutines = function () {
                     _this.RoutineService.getRoutines().then(function (data) {
@@ -73,6 +74,7 @@ var Kahls;
                     });
                 };
                 this.state = $state;
+                this.occurences = RoutineService.occurences;
                 RoutineService.getRoutines().then(function (data) {
                     _this.routines = data;
                 });
@@ -166,6 +168,18 @@ var Kahls;
                 var _this = this;
                 this.$http = $http;
                 this.$q = $q;
+                this.occurences = [
+                    { title: 'Morgon' },
+                    { title: 'Stängning' },
+                    { title: 'Varje dag' },
+                    { title: 'Måndag' },
+                    { title: 'Tisdag' },
+                    { title: 'Onsdag' },
+                    { title: 'Torsdag' },
+                    { title: 'Fredag' },
+                    { title: 'Lördag' },
+                    { title: 'Söndag' }
+                ];
                 this.getRoutines = function () {
                     return _this.$http.get('api/routines').then(function (res) {
                         return res.data;
