@@ -38,6 +38,17 @@ module.exports = (function () {
 
         })
     })
+    
+    app.put('/task/today/:id', function(req,res){
+        var today = moment().format('YYYY-MM-DD');
+        Task.find({ taskDate: today }, function(err, task){
+            Task.update({'todos._id': req.param.id}, {'$set': {
+                'todos.$.done': true
+            }}, function(err){
+                console.log('Error on saving');
+            })
+        })
+    })
 
     app.post('/task/today', function (req, res) {
         var today = moment().format('YYYY-MM-DD');
