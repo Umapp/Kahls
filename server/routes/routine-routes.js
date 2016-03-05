@@ -41,12 +41,15 @@ module.exports = (function () {
     
     app.put('/task/today/:id', function(req,res){
         var today = moment().format('YYYY-MM-DD');
+        
         Task.find({ taskDate: today }, function(err, task){
-            Task.update({'todos._id': req.param.id}, {'$set': {
-                'todos.$.done': true
-            }}, function(err){
-                console.log('Error on saving');
-            })
+            for(var i = 0; i < task[0]._doc.todos.length; i++){
+                console.log(task[0]._doc.todos[i]);
+            }
+            //.todos._id(req.params.id);
+            //routine.done = true;
+           // task.save();
+            //res.json('Done');
         })
     })
 
