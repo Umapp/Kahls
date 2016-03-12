@@ -6,14 +6,7 @@ var moment = require('moment')
 module.exports = (function () {
     var app = express.Router();
     moment.locale('sv');
-
-
-    app.get('/routines', function (req, res) {
-        Routine.find({}, function (err, routines) {
-            res.json(routines);
-        })
-    });
-
+    
     app.get('/task/today', function (req, res) {
         var today = moment().format('YYYY-MM-DD');
         Task.find({ taskDate: today }, function (err, task) {
@@ -23,12 +16,12 @@ module.exports = (function () {
                 Routine.find({
                     $and : [
                         { $or: [{occurence: 'Morgon'}, {occurence: 'Stängning'}, {occurence: 'Varje dag'}, {occurence: weekday}]}
-                    ]}, function (err, routines) {
-                    task = new Task({ todos: routines, taskDate: today })
+                    ]}, function (err, resRoutines) {
+                    task = new Task({routines: resRoutines, taskDate: today })
                     task.save(function (err) {
                         if (err)
                             console.log(err)
-                    res.json(task[0].todos)
+                    res.json(task[0])
                     });
                 })
             }
@@ -36,47 +29,34 @@ module.exports = (function () {
                 res.json(task[0].todos);
             }
 
+        }, function(err){
+            console.log(err);
         })
     })
     
     app.put('/task/today/:id', function(req,res){
         var today = moment().format('YYYY-MM-DD');
+        var now = moment().format('hh:mm:ss');
         
-        Task.find({ taskDate: today }, function(err, task){
-            for(var i = 0; i < task[0]._doc.todos.length; i++){
-                console.log(task[0]._doc.todos[i]);
-            }
-            //.todos._id(req.params.id);
-            //routine.done = true;
-           // task.save();
-            //res.json('Done');
+        Task.findOne({ taskDate: today }, function(err, task){
+            task.routines.forEach(function(routine){
+                if(routine._id == req.params.id){
+                    routine.completedBy = req.body.user;
+                    routine.completedTime = now;
+                }
+            })
+            task.save(function(err, res){
+                console.log(err, res);
+            })
+            res.json('Done');
         })
     })
 
-    app.post('/task/today', function (req, res) {
-        var today = moment().format('YYYY-MM-DD');
-        var weekday = moment().format('dddd')
-        //var task;
-        weekday = weekday.substr(0,1).toUpperCase() + weekday.substr(1);
-        
-        Task.find({ taskDate: today }, function (err, task) {
-            if(!task.length){
-                Routine.find({
-                    $and : [
-                        { $or: [{occurence: 'Morgon'}, {occurence: 'Stängning'}, {occurence: 'Varje dag'}, {occurence: weekday}]}
-                    ]}, function (err, routines) {
-                    task = new Task({ todos: routines, taskDate: today })
-                    task.save(function (err) {
-                        if (err)
-                            console.log(err)
-                    res.json(task[0].todos)
-                    });
-                })
-            }
-            else{
-                res.json(task[0].todos);
-            }
-        }); 
+
+    app.get('/routines', function (req, res) {
+        Routine.find({}, function (err, routines) {
+            res.json(routines);
+        })
     });
 
     app.post('/routine', function (req, res) {

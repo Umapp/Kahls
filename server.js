@@ -12,7 +12,7 @@ var db = require('./server/config/database')
 mongoose.connect(db.url);
 var port = process.env.PORT || 1335;
 
-var questions = require('./server/routes/routine-routes');
+var routines = require('./server/routes/routine-routes');
 
 //var tokenGen = process.env.FIREBASETOKEN_URI;
 
@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 });
 
 // apply the routes to our application with the prefix /api
-app.use('/api', questions);
+app.use('/api', routines);
 
 app.listen(port);
 console.log('Login service is running on port: ' + port);
