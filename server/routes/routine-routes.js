@@ -2,6 +2,7 @@ var express = require('express');
 var Routine = require('../models/routine');
 var Task = require('../models/task');
 var moment = require('moment')
+var tz = require('moment-timezone');
 
 module.exports = (function () {
     var app = express.Router();
@@ -12,6 +13,7 @@ module.exports = (function () {
         Task.find({ taskDate: today }, function (err, task) {
             if(!task.length){
                 var weekday = moment().format('dddd');
+                console.log(weekday);
                 weekday = weekday.substr(0,1).toUpperCase() + weekday.substr(1);
                 Routine.find({
                     $and : [
@@ -21,11 +23,12 @@ module.exports = (function () {
                     task.save(function (err) {
                         if (err)
                             console.log(err)
-                    res.json(task[0].routines)
+                    res.json(task.routines)
                     });
                 })
             }
             else{
+                console.log(task[0].routines);
                 res.json(task[0].routines);
             }
 
@@ -35,9 +38,11 @@ module.exports = (function () {
     })
     
     app.put('/task/today/:id', function(req,res){
+        moment.locale('sv');
         var today = moment().format('YYYY-MM-DD');
-        var now = moment().format('hh:mm:ss');
-        
+        var now = moment();
+        now = now.tz('Europe/Berlin').format('HH:mm:ss')
+        console.log(req.body);
         Task.findOne({ taskDate: today }, function(err, task){
             task.routines.forEach(function(routine){
                 if(routine._id == req.params.id){
@@ -45,8 +50,8 @@ module.exports = (function () {
                     routine.completedTime = now;
                 }
             })
-            task.save(function(err, res){
-                console.log(err, res);
+            task.save(function(err, response){
+                console.log(err, response);
             })
             res.json('Done');
         })

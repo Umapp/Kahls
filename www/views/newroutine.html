@@ -6,12 +6,13 @@
         <form ng-submit="newRoutine.save()">
             <div class="form-group">
                 <label for="">Beskrivning</label>
-                <input type="text" class="form-control" ng-model="routine.title">
+                <textarea rows="9" type="text" class="form-control" ng-model="routine.title"></textarea>
             </div>
             <div class="form-group">
                 <label for="">Kategori</label>
-
-                <input type="text" class="form-control" ng-model="routine.category">
+                <select ng-model="routine.category" class="form-control">
+                    <option ng-repeat="category in vm.categories" value="{{category.title}}">{{category.title}}</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="">När</label>
@@ -19,7 +20,6 @@
                     <option ng-repeat="occurence in vm.occurences" value="{{occurence.title}}">{{occurence.title}}</option>
                 </select>
             </div>
-
             <input type="submit" value="Spara" class="btn btn-success">
         </form>
     </div>

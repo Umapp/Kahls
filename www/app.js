@@ -75,6 +75,7 @@ var Kahls;
                 };
                 this.state = $state;
                 this.occurences = RoutineService.occurences;
+                this.categories = RoutineService.categories;
                 RoutineService.getRoutines().then(function (data) {
                     _this.routines = data;
                 });
@@ -179,6 +180,25 @@ var Kahls;
                     { title: 'Fredag', lower: 'fredag' },
                     { title: 'Lördag', lower: 'lördag' },
                     { title: 'Söndag', lower: 'söndag' }
+                ];
+                this.categories = [
+                    { title: 'Dammtorka' },
+                    { title: 'Exponering' },
+                    { title: 'Kassa' },
+                    { title: 'Diskmaskin' },
+                    { title: 'Kyl' },
+                    { title: 'Kaffebryggare' },
+                    { title: 'Espressomaskin' },
+                    { title: 'Kemikalier' },
+                    { title: 'Skadedjur' },
+                    { title: 'Infoskärm' },
+                    { title: 'Golv' },
+                    { title: 'Städ' },
+                    { title: 'Fyll på' },
+                    { title: 'Kakor' },
+                    { title: 'Våttorka' },
+                    { title: 'Sopor' },
+                    { title: 'Övrigt' }
                 ];
                 this.getRoutines = function () {
                     return _this.$http.get('api/routines').then(function (res) {

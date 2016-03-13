@@ -1,9 +1,10 @@
 interface IRoutineService {
     getRoutines(): any;
-    updateRoutine(routine: Routine)
-    addRoutine(routine: Routine)
-    deleteRoutine(routine: Routine)
+    updateRoutine(routine: Routine);
+    addRoutine(routine: Routine);
+    deleteRoutine(routine: Routine);
     occurences: any;
+    categories: any;
 }
 module Kahls.Services {
     export class RoutineService {
@@ -20,6 +21,26 @@ module Kahls.Services {
             { title: 'Lördag', lower: 'lördag' },
             { title: 'Söndag', lower: 'söndag' }
         ];
+        
+        categories = [
+           { title: 'Dammtorka'},
+           { title: 'Exponering'},
+           { title: 'Kassa'},
+           { title: 'Diskmaskin'},
+           { title: 'Kyl'},
+          { title:  'Kaffebryggare'},
+          { title:  'Espressomaskin'},
+          { title:  'Kemikalier'},
+          { title:  'Skadedjur'},
+          { title:  'Infoskärm'},
+          { title:  'Golv'},
+         { title:   'Städ'},
+         { title:   'Fyll på'},
+         {title: 'Kakor'},
+         {title: 'Våttorka'},
+         {title: 'Sopor'},
+          { title:  'Övrigt'}
+        ]
 
         static $inject = ['$http', '$q'];
         constructor(private $http, private $q) {
